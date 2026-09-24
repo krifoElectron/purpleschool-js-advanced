@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>До нового года осталось</h1>
+    <div id="toNewYear"></div>
+    <script>
+        const newYear = new Date();
+        newYear.setFullYear(newYear.getFullYear() + 1);
+        newYear.setMonth(11);
+        newYear.setDate(31);
+        newYear.setHours(23);
+        newYear.setMinutes(59);
+        newYear.setSeconds(59);
+        newYear.setMilliseconds(999);
+        console.log(newYear)
+
+        setInterval(setRest, 1000);
+        setRest();
+
+        function setRest() {
+            const now = new Date();
+            const secondsDiff = Math.round((newYear.getTime() - now.getTime()) / 1000);
+
+            const months = newYear.getMonth() - now.getMonth();
+            const days = newYear.getDate() - now.getDate();
+            const hours = Math.floor(secondsDiff / 60 / 60) % 24;
+            const minutes = Math.floor(secondsDiff / 60) % 60;
+            const seconds = secondsDiff % 60;
+
+            const element = document.getElementById('toNewYear');
+
+            element.innerText = `${months} месяцев, ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+        }
+    </script>
+</body>
+
+</html>
